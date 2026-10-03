@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Chrome Dino Runner Game</title>
+    <meta name="description" content="A classic, responsive arcade Dino runner game created with pure HTML, CSS, and JavaScript featuring jump physics, obstacle collision detection, real-time score tracking, and restart capabilities." />
+    <meta property="og:title" content="Chrome Dino Runner Game" />
+    <meta property="og:description" content="A classic, responsive arcade Dino runner game created with pure HTML, CSS, and JavaScript featuring jump physics, obstacle collision detection, real-time score tracking, and restart capabilities." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts for Retro Pixel Arcade Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+    <!-- Game Stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app-container">
+
+      <!-- Game Top Bar with Title, Controls, and Score Counter in the Top Corner -->
+      <header class="game-header">
+        <div class="brand-section">
+          <h1 class="game-title">T-REX RUNNER</h1>
+          <div class="header-actions">
+            <button id="soundToggleBtn" class="icon-btn" aria-label="Toggle Sound Effects">🔊 Sound On</button>
+            <button id="themeToggleBtn" class="icon-btn" aria-label="Toggle Day or Night Mode">🌓 Theme</button>
+          </div>
+        </div>
+
+        <!-- Score Counter in Top Corner (High Score + Current Score) -->
+        <div class="score-board" id="scoreBoard" aria-live="polite">
+          <span class="score-hi" id="scoreHi">HI 00000</span>
+          <span class="score-current" id="scoreCurrent">00000</span>
+        </div>
+      </header>
+
+      <!-- Game Stage & Viewport -->
+      <section
+        id="gameViewport"
+        class="game-viewport"
+        tabindex="0"
+        role="region"
+        aria-label="Dino Game Playing Canvas"
+      >
+        <!-- Sky, Clouds & Moon -->
+        <div class="sky-container" id="skyContainer">
+          <svg class="moon" viewBox="0 0 24 24">
+          </svg>
+        </div>
+
+        <!-- Moving Obstacles Container -->
+        <div id="obstaclesLayer" class="obstacles-layer"></div>
+
+        <!-- Ground Line with moving terrain -->
+        <div id="groundLine" class="ground-line"></div>
+
+        <!-- Dinosaur Character -->
+        <div id="dinoCharacter" class="dino" aria-label="Dinosaur Runner"></div>
+
+        <!-- Initial Start Prompt -->
+        <div id="startPrompt" class="start-prompt">
+          PRESS SPACE OR TAP TO JUMP
+        </div>
+
+        <!-- Game Over Modal with Reset Button -->
+        <div id="gameOverModal" class="game-over-modal" role="dialog" aria-modal="true" aria-labelledby="gameOverHeading">
+          <h2 id="gameOverHeading" class="game-over-title">GAME OVER</h2>
+          <p class="game-over-summary">
+            SCORE: <span id="finalScore">00000</span> &nbsp;|&nbsp; BEST: <span id="finalHiScore">00000</span>
+          </p>
+          <button id="resetButton" class="reset-button" aria-label="Restart Game">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+            </svg>
+            PLAY AGAIN
+          </button>
+        </div>
+      </section>
+
+      <!-- Mobile Touch Controls -->
+      <div class="touch-controls">
+        <button id="jumpTouchBtn" class="touch-btn">▲ JUMP</button>
+        <button id="duckTouchBtn" class="touch-btn">▼ DUCK</button>
+      </div>
+
+      <!-- Controls & Gameplay Info -->
+      <footer class="controls-info">
+        <div class="desktop-hints">
+          <span>[SPACE] / [↑] : Jump</span> &nbsp;·&nbsp;
+          <span>[↓] : Duck / Quick Drop</span>
+        </div>
+        <div>Survive longer to increase speed &amp; score!</div>
+      </footer>
+    </main>
+
+    <!-- Game Script (Pure Vanilla JavaScript) -->
+    <script src="/script.js"></script>
+  </body>
+</html>
